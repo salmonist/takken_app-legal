@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宅建トレAI - 宅建試験学習アプリ</title>
+    <meta name="description" content="宅建試験（宅地建物取引士資格試験）の合格を目指す方のための学習支援アプリ。過去問演習、一問一答、模試、弱点分析で効率的な学習をサポート。">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            color: white;
+        }
+
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #0071e3 0%, #0077ed 100%);
+            border-radius: 28px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .features {
+            background-color: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 50px;
+            color: #1d1d1f;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+
+        .feature-item p {
+            color: #6e6e73;
+            line-height: 1.8;
+        }
+
+        .info-section {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-section h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+        }
+
+        .info-section p {
+            color: #6e6e73;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .links {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .links h2 {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #1d1d1f;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .link-card {
+            text-align: center;
+            padding: 30px 20px;
+            border: 2px solid #e5e5e7;
+            border-radius: 16px;
+            text-decoration: none;
+            color: #1d1d1f;
+            transition: all 0.3s;
+        }
+
+        .link-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .link-card-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .link-card-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .link-card-desc {
+            font-size: 0.9em;
+            color: #6e6e73;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            opacity: 0.9;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .tagline {
+                font-size: 1.1em;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .features {
+                padding: 40px 20px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="app-icon">📚</div>
+            <h1>宅建トレAI</h1>
+            <p class="tagline">AI活用型 宅地建物取引士資格試験 学習アプリ</p>
+            <div class="cta-buttons">
+                <span class="btn btn-primary">App Store で公開準備中</span>
+                <a href="privacy.html" class="btn btn-secondary">プライバシーポリシー</a>
+            </div>
+        </div>
+
+        <div class="features">
+            <h2>主な機能</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📝</div>
+                    <h3>過去問演習</h3>
+                    <p>公式の過去問題と、選択肢ごとの一問一答（○×）で実践的に学習できます</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <h3>弱点分析</h3>
+                    <p>学習履歴から自動的に弱点を分析し、効率的な復習をサポート</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h3>模試</h3>
+                    <p>本試験と同じ50問・120分の模試で、合格ラインとの差を確認できます</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI学習サポート</h3>
+                    <p>間違えた理由の整理や、学習状況に基づくアドバイスをAIが手伝います</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>宅建トレAIについて</h2>
+            <p>
+                宅建トレAIは、宅地建物取引士資格試験の合格を目指す方のために開発されたAI活用型学習支援アプリです。
+                過去問演習、一問一答、模試、弱点分析など、試験対策に必要な機能を備えています。
+            </p>
+            <p>
+                AI技術（Anthropic Claude API）を活用し、間違えた問題の振り返りと効率的な学習をサポートします。
+                収録している過去問題は、一般財団法人 不動産適正取引推進機構が公表した試験問題を引用しています。
+            </p>
+        </div>
+
+        <div class="links">
+            <h2>リンク</h2>
+            <div class="link-grid">
+                <a href="privacy.html" class="link-card">
+                    <div class="link-card-icon">🔒</div>
+                    <div class="link-card-title">プライバシーポリシー</div>
+                    <div class="link-card-desc">個人情報の取り扱いについて</div>
+                </a>
+                <a href="mailto:contact@mesh-tax.com" class="link-card">
+                    <div class="link-card-icon">✉️</div>
+                    <div class="link-card-title">お問い合わせ</div>
+                    <div class="link-card-desc">contact@mesh-tax.com</div>
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 宅建トレAI. All rights reserved.</p>
+            <p style="margin-top: 15px;">
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="mailto:contact@mesh-tax.com">お問い合わせ</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
